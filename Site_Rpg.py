@@ -127,6 +127,11 @@ def main():
         with e2: st.text_area("E", height=250, key="equip_v", label_visibility="collapsed")
         st.write("---")
         st.subheader(to_gothic("Itens"))
+        if "itens_v" not in st.session_state or st.session_state["itens_v"] is None:
+            st.session_state["itens_v"] = ""
+        else:
+            st.session_state["itens_v"] = str(st.session_state["itens_v"])
+
         st.text_area("M", height=250, key="itens_v", label_visibility="collapsed")
 
     # --- COLUNA STATUS ---
@@ -189,9 +194,12 @@ def main():
                                                                              label_visibility="collapsed")
             with c_r:
                 if st.button("X", key=f"r_ps_{idx}"): st.session_state.passivas.pop(idx); st.rerun()
-
     st.write("---")
     st.subheader(to_gothic("Notas"))
+    if "notas_v" not in st.session_state or st.session_state["notas_v"] is None:
+        st.session_state["notas_v"] = ""
+    else:
+        st.session_state["notas_v"] = str(st.session_state["notas_v"])
     st.text_area("N", key="notas_v", height=100, label_visibility="collapsed")
 
     # DOWNLOAD (Ficha em Bloco de Notas)
